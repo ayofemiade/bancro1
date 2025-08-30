@@ -63,7 +63,7 @@ export default function SignUpPage() {
         <div className="flex-1 flex items-center justify-start px-2">
           <div className="w-full max-w-sm">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Sign Up 👋</h1>
-            <p className="text-gray-600 mb-2">Let's get started</p>
+            <p className="text-gray-600 mb-2">Let&apos;s get started</p>
 
             {/* Account type toggle */}
             <div className="flex bg-gray-100 rounded-lg p-1 mb-4">

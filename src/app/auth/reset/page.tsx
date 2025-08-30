@@ -55,7 +55,7 @@ export default function ResetPage() {
             <div className="flex flex-col justify-center space-y-2">
 
           <h1 className="text-3xl font-bold text-gray-800 mb-6">Forgot Password</h1>
-          <p className="text-gray-600 mb-6">Don't worry! It happens to the best of us. Provide your registered email address and we'll get you sorted out.
+          <p className="text-gray-600 mb-6">Do&apos;nt worry! It happens to the best of us. Provide your registered email address and we'll get you sorted out.
 </p>
           </div>
 
