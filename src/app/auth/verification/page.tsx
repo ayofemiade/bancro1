@@ -1,31 +1,28 @@
-'use client';
+"use client";
+
 import Image from "next/image";
-import { useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useState, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 
-export default function VerificationPage() {
+function VerificationContent() {
   const router = useRouter();
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
-  const [hasStarted, setHasStarted] = useState(false); // track if typing started
+  const [hasStarted, setHasStarted] = useState(false);
   const isComplete = verificationCode.every((digit) => digit !== '');
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode"); // "signup" or "reset"
 
-
   const handleVerificationChange = (index: number, value: string) => {
-    // Only allow digits (0–9), and max 1 char
     if (/^\d?$/.test(value)) {
       const newCode = [...verificationCode];
       newCode[index] = value;
       setVerificationCode(newCode);
 
-      // once user types first digit -> hide placeholders
       if (!hasStarted && value !== '') {
         setHasStarted(true);
       }
 
-      // Auto-focus next input
       if (value && index < 5) {
         const nextInput = document.getElementById(`code-${index + 1}`) as HTMLInputElement;
         if (nextInput) nextInput.focus();
@@ -33,11 +30,11 @@ export default function VerificationPage() {
     }
   };
 
-   const handleVerification = () => {
+  const handleVerification = () => {
     if (mode === "signup") {
-      router.push("/auth/sign-in"); // after sign up verification
+      router.push("/auth/sign-in");
     } else if (mode === "reset") {
-      router.push("/auth/reset-password"); // after forgot password verification
+      router.push("/auth/reset-password");
     }
   };
 
@@ -58,7 +55,7 @@ export default function VerificationPage() {
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Email Verification</h1>
           <p className="text-gray-600 text-sm">
-            Enter the 6-Digit verification code that has been sent to your<br />
+            Enter the 6-digit verification code that has been sent to your<br />
             registered email address. Check your inbox.
           </p>
         </div>
@@ -78,10 +75,10 @@ export default function VerificationPage() {
                 onKeyDown={(e) => {
                   if (
                     !/[0-9]/.test(e.key) &&
-                    e.key !== 'Backspace' &&
-                    e.key !== 'Tab' &&
-                    e.key !== 'ArrowLeft' &&
-                    e.key !== 'ArrowRight'
+                    e.key !== "Backspace" &&
+                    e.key !== "Tab" &&
+                    e.key !== "ArrowLeft" &&
+                    e.key !== "ArrowRight"
                   ) {
                     e.preventDefault();
                   }
@@ -90,23 +87,34 @@ export default function VerificationPage() {
                            focus:ring-2 focus:ring-green-500 focus:border-transparent 
                            text-black placeholder-gray-400"
                 maxLength={1}
-                placeholder={hasStarted ? '' : '0'}
+                placeholder={hasStarted ? "" : "0"}
               />
             ))}
           </div>
 
           <button
             onClick={handleVerification}
-            disabled={!isComplete}  // disable if not complete
+            disabled={!isComplete}
             className={`w-full py-3 rounded-lg font-medium transition-colors 
-                        ${isComplete 
-                          ? 'bg-green-400 text-white hover:bg-green-500' 
-                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                        ${
+                          isComplete
+                            ? "bg-green-400 text-white hover:bg-green-500"
+                            : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        }`}
           >
             Verify Code
           </button>
         </div>
       </div>
     </div>
+  );
+}
+
+
+export default function VerificationPage() {
+  return (
+    <Suspense fallback={<div>Loading verification...</div>}>
+      <VerificationContent />
+    </Suspense>
   );
 }
