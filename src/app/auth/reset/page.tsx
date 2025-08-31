@@ -25,19 +25,19 @@ export default function ResetPage() {
 
 
   return (
-    <div className="h-screen bg-white flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col overflow-hidden">
           {/* Logo at the top */}
-          <div className="px-10 ">
-            <div className="px-8 py-6">
+          <div className="px-4 md:px-10">
+            <div className="px-4 md:px-8 py-4 md:py-6">
       <Image src="/logo.png" alt="Bancro Logo" width={150} height={40} />
     </div>
     
           </div>
     
           {/* Main content area */}
-          <div className="flex-1 flex items-center min-h-0">
-            {/* Left side with image */}
-            <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex flex-col md:flex-row items-center min-h-0">
+            {/* Left side with image - hidden on mobile */}
+            <div className="hidden md:flex flex-1 items-center justify-center">
               <div className="w-100 h-120 rounded-2xl overflow-hidden shadow-lg">
                 <Image
                   src="/business.png" 
@@ -50,18 +50,18 @@ export default function ResetPage() {
             </div>
 
       {/* Right side with form */}
-        <div className="flex-1 flex items-center justify-start px-2">
-          <div className="w-full max-w-sm ">
+        <div className="flex-1 flex items-center justify-center md:justify-start px-4 md:px-2 py-8 md:py-0">
+          <div className="w-full max-w-sm">
             <div className="flex flex-col justify-center space-y-2">
 
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">Forgot Password</h1>
-          <p className="text-gray-600 mb-6">Do&apos;nt worry! It happens to the best of us. Provide your registered email address and we'll get you sorted out.
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6">Forgot Password</h1>
+          <p className="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">Do&apos;nt worry! It happens to the best of us. Provide your registered email address and we'll get you sorted out.
 </p>
           </div>
 
           {/* Form */}
           <div>
-            <div className="space-y-8">
+            <div className="space-y-4 md:space-y-8">
               {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-1">Email Address</label>

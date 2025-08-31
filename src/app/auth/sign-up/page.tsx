@@ -36,18 +36,18 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="h-screen bg-white flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col overflow-hidden">
       {/* Logo */}
-      <div className="px-10">
-        <div className="px-8 py-6">
+      <div className="px-4 md:px-10">
+        <div className="px-4 md:px-8 py-4 md:py-6">
           <Image src="/logo.png" alt="Bancro Logo" width={150} height={40} />
         </div>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex items-center min-h-0">
-        {/* Left image */}
-        <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex flex-col md:flex-row items-center min-h-0">
+        {/* Left image - hidden on mobile */}
+        <div className="hidden md:flex flex-1 items-center justify-center">
           <div className="w-100 h-120 rounded-2xl overflow-hidden shadow-lg">
             <Image
          src={accountType === 'personal' ? "/image.png" : "/business.png"}
@@ -60,10 +60,10 @@ export default function SignUpPage() {
         </div>
 
         {/* Right form */}
-        <div className="flex-1 flex items-center justify-start px-2">
+        <div className="flex-1 flex items-center justify-center md:justify-start px-4 md:px-2 py-8 md:py-0">
           <div className="w-full max-w-sm">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Sign Up 👋</h1>
-            <p className="text-gray-600 mb-2">Let&apos;s get started</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Sign Up 👋</h1>
+            <p className="text-gray-600 mb-2 text-sm md:text-base">Let&apos;s get started</p>
 
             {/* Account type toggle */}
             <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
@@ -90,7 +90,7 @@ export default function SignUpPage() {
             </div>
 
             {/* Form */}
-            <div className="space-y-1.5">
+            <div className="space-y-3 md:space-y-3">
               {accountType === 'personal' ? (
                 <>
                   {/* First Name */}
